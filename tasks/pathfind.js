@@ -1,8 +1,8 @@
 import Task from './task'
 import { mineflayer, bot } from '../main'
 
-// I don't know how to es6-ify this :(
-var navigatePlugin = require('mineflayer-navigate')(mineflayer);
+import * as navigate from 'mineflayer-navigate';
+const navigatePlugin = navigate(mineflayer);
 
 export default class PathFind extends Task {
 
@@ -26,10 +26,10 @@ export default class PathFind extends Task {
             return
         }
 
-        let target = bot.players[username].entity
+        const target = bot.players[username].entity
 
         // Makes sure the bot can find the target.
-        if(target == undefined || target == null){
+        if(target == null){
             bot.whisper(username, 'I can not find you, please come closer.')
             return
         }
